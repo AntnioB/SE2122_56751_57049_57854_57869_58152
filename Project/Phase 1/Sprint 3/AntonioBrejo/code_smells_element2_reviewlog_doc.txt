@@ -1,0 +1,7 @@
+Review
+Reviewer: Bruna Arroja
+Reviewed: António Brejo
+
+There is in fact a long method code smell, the method processArguments() has too many lines. Could have said that the complexity would decrease and would be easier to read the code due to solving this problem.
+
+

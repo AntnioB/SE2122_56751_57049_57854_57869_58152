@@ -1,0 +1,3 @@
+Reviewer: António Brejo
+I also think this class has a primitive obssession code smell, 
+and the refactor looks good.

@@ -1,0 +1,5 @@
+Review
+Reviewer: Bruna Arroja
+Reviewed: Pedro Nunes
+
+The design pattern seems to be the factory pattern, nothing special to add.
