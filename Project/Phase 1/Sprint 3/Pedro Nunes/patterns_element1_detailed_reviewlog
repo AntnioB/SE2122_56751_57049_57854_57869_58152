@@ -1,0 +1,4 @@
+Reviewer: Daniel Cavalheiro
+
+This class seams to implement the observer design pattern.
+Could have metion that the class has list of all listeners and also has methods to add more (addListener) or delete (unregister) which are staples of this design pattern. 
