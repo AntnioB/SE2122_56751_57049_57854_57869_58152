@@ -1,0 +1,4 @@
+Reviewer: Daniel Cavalheiro
+
+The first snippet reveals a comment that literally calls this class a Facade and after close inspection it does apper to unify complex subsystems relative to the citation style engine.
+A suggestion would be to go in to more detail on the subsystem unified by this facade design pattern. 
