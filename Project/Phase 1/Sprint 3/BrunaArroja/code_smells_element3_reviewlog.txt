@@ -1,0 +1,2 @@
+Reviewer: António Brejo
+I confirm that this class is never used and can be deleted.

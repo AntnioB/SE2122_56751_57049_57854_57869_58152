@@ -1,0 +1,4 @@
+Reviewer: António Brejo
+I think it is a factory method since we have creator class, which creates
+objects which in turn implemment an object interface, which in this case
+is the NativeDesktop inteerface.

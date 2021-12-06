@@ -1,0 +1,5 @@
+Reviewer: Daniel Cavalheiro
+
+Identified a Long method code smell that is just shy of 200 lines, in average a method should just have 30 lines. 
+Refactoring suggestion is correct.
+Everything looks good.
