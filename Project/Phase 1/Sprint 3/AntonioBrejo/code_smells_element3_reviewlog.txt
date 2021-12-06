@@ -1,0 +1,4 @@
+Reviewer: Pedro Nunes
+
+I agree that this nested enum should be removed as it is not necessary and is bloating the code.
+

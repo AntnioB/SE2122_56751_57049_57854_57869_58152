@@ -1,0 +1,5 @@
+Reviewer: Pedro Nunes
+
+I agree, there are to many parameters in this method.
+Also i would like to add that refactoring may lead to decreasing the 
+overall complexity of this class.

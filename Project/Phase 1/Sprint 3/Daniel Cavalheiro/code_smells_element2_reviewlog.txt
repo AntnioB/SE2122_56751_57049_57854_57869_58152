@@ -1,0 +1,4 @@
+Reviewer: Pedro Nunes
+
+I agree with this remarks and also think this function should be chopped up 
+into smaller subroutines to make it more readable.

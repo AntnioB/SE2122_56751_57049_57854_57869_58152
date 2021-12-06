@@ -1,0 +1,3 @@
+Reviewer: Pedro Nunes
+
+I agree with everything and also suggest to go more in detail about the observer pattern.
