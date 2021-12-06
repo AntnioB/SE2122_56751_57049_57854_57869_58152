@@ -1,0 +1,5 @@
+Review
+Reviewer: Bruna Arroja
+Reviewed: Pedro Nunes
+
+For sure a long parameter list code smell, fixing this problem may involve some refactoring and even reveal some unnoticed duplicate code.

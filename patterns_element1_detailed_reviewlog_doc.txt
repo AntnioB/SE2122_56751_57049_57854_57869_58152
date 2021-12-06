@@ -1,0 +1,5 @@
+Review
+Reviewer: Bruna Arroja
+Reviewed: Daniel Cavalheiro
+
+I do believe that there is a composite design pattern due to the variables names. I have nothing to add.

@@ -1,0 +1,5 @@
+Review
+Reviewer: Bruna Arroja
+Reviewed: Pedro Nunes
+
+I can identify the switch statement code smell on the BibtexCaseChanger class, and his justification is correct.
