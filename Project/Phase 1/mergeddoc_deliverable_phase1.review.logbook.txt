@@ -1,0 +1,8 @@
+ Due to bad management of time, our team ended up doing most of the work in the last 2 weeks of
+the project. To improve we should work on scheduling more meetings to discuss what we do the
+previous week.
+ The burndown chart and the backlog from the second sprint don't correspond to all the work that 
+had been done that week because the scrum master couldn't deliver them.
+
+ 
+ 
