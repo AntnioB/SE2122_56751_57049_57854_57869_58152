@@ -1,0 +1,2 @@
+Reviewer: António Brejo
+This singleton pattern seems to be in accord to the material given in classes.
