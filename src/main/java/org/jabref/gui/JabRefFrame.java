@@ -87,11 +87,7 @@ import org.jabref.gui.help.ErrorConsoleAction;
 import org.jabref.gui.help.HelpAction;
 import org.jabref.gui.help.SearchForUpdateAction;
 import org.jabref.gui.icon.IconTheme;
-import org.jabref.gui.importer.GenerateEntryFromIdDialog;
-import org.jabref.gui.importer.ImportCommand;
-import org.jabref.gui.importer.ImportEntriesDialog;
-import org.jabref.gui.importer.NewDatabaseAction;
-import org.jabref.gui.importer.NewEntryAction;
+import org.jabref.gui.importer.*;
 import org.jabref.gui.importer.actions.OpenDatabaseAction;
 import org.jabref.gui.importer.fetcher.LookupIdentifierAction;
 import org.jabref.gui.integrity.IntegrityCheckAction;
@@ -772,6 +768,7 @@ public class JabRefFrame extends BorderPane {
         library.getItems().addAll(
                 factory.createMenuItem(StandardActions.NEW_ENTRY, new NewEntryAction(this, dialogService, prefs, stateManager)),
                 factory.createMenuItem(StandardActions.NEW_ENTRY_FROM_PLAIN_TEXT, new ExtractBibtexAction(dialogService, prefs, stateManager)),
+                factory.createMenuItem(StandardActions.NEW_ENTRY_SCAN,new NewEntryScan(this,dialogService,prefs,stateManager)),
                 factory.createMenuItem(StandardActions.DELETE_ENTRY, new EditAction(StandardActions.DELETE_ENTRY, this, stateManager)),
 
                 new SeparatorMenuItem(),
