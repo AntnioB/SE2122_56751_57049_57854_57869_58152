@@ -27,6 +27,9 @@ public class NewEntryScan extends SimpleCommand {
 
     @Override
     public void execute() {
-        new webcamTest();
+        WebcamQR webcam=new WebcamQR();
+
+        System.out.println(webcam.getQRCode());
+        System.out.println("yooooo");
     }
 }

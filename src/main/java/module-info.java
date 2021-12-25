@@ -105,4 +105,6 @@ open module org.jabref {
     requires com.fasterxml.jackson.datatype.jsr310;
     requires net.harawata.appdirs;
     requires webcam.capture;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
 }

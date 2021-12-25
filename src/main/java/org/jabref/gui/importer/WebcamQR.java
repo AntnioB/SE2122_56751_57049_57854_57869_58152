@@ -20,7 +20,7 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 
-public class WebcamQRCodeExample extends JFrame implements Runnable, ThreadFactory {
+public class WebcamQR extends JFrame implements Runnable, ThreadFactory {
 
     private static final long serialVersionUID = 6441489157408381878L;
 
@@ -29,8 +29,10 @@ public class WebcamQRCodeExample extends JFrame implements Runnable, ThreadFacto
     private Webcam webcam = null;
     private WebcamPanel panel = null;
     private JTextArea textarea = null;
+    private Result result = null;
 
-    public WebcamQRCodeExample() {
+
+    public WebcamQR() {
         super();
 
         setLayout(new FlowLayout());
@@ -69,7 +71,6 @@ public class WebcamQRCodeExample extends JFrame implements Runnable, ThreadFacto
                 e.printStackTrace();
             }
 
-            Result result = null;
             BufferedImage image = null;
 
             if (webcam.isOpen()) {
@@ -92,7 +93,8 @@ public class WebcamQRCodeExample extends JFrame implements Runnable, ThreadFacto
                 textarea.setText(result.getText());
             }
 
-        } while (true);
+
+        } while (result == null);
     }
 
     @Override
@@ -102,7 +104,7 @@ public class WebcamQRCodeExample extends JFrame implements Runnable, ThreadFacto
         return t;
     }
 
-    public static void main(String[] args) {
-        new WebcamQRCodeExample();
+    public String getQRCode(){
+        return result.getText();
     }
 }
