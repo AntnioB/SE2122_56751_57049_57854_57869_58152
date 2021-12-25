@@ -7,6 +7,8 @@ import org.jabref.gui.actions.SimpleCommand;
 import org.jabref.preferences.PreferencesService;
 import com.github.sarxos.webcam.*;
 
+import javax.swing.*;
+
 import static org.jabref.gui.actions.ActionHelper.needsDatabase;
 
 public class NewEntryScan extends SimpleCommand {
@@ -25,6 +27,6 @@ public class NewEntryScan extends SimpleCommand {
 
     @Override
     public void execute() {
-        Webcam yoo=Webcam.getDefault();
+        new webcamTest();
     }
 }
