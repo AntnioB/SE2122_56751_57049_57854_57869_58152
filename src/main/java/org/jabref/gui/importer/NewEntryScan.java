@@ -17,6 +17,8 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -88,7 +90,7 @@ public class NewEntryScan extends SimpleCommand {
 
             setLayout(new FlowLayout());
             setTitle("Read QR / Bar Code With Webcam");
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
             Dimension size = WebcamResolution.QVGA.getSize();
 
@@ -108,8 +110,19 @@ public class NewEntryScan extends SimpleCommand {
 
             pack();
             setVisible(true);
+            toFront();
 
             executor.execute(this);
+
+            WindowAdapter close = new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    super.windowClosing(e);
+                    webcam.close();
+                    dispose();
+                }
+            };
+            addWindowListener(close);
         }
 
         @Override
@@ -149,6 +162,9 @@ public class NewEntryScan extends SimpleCommand {
 
 
             } while (result == null);
+
+            webcam.close();
+            dispose();
         }
 
         @Override
@@ -157,6 +173,5 @@ public class NewEntryScan extends SimpleCommand {
             t.setDaemon(true);
             return t;
         }
-
     }
 }
