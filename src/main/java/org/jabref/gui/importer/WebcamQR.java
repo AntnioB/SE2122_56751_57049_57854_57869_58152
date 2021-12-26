@@ -91,6 +91,8 @@ public class WebcamQR extends JFrame implements Runnable, ThreadFactory {
 
             if (result != null) {
                 textarea.setText(result.getText());
+
+
             }
 
 
@@ -104,7 +106,4 @@ public class WebcamQR extends JFrame implements Runnable, ThreadFactory {
         return t;
     }
 
-    public String getQRCode(){
-        return result.getText();
-    }
 }
