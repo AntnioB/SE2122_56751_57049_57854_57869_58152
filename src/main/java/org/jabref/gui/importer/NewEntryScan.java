@@ -1,21 +1,17 @@
 package org.jabref.gui.importer;
 
-import com.google.zxing.*;
+
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import org.controlsfx.control.PopOver;
 import org.jabref.gui.DialogService;
 import org.jabref.gui.JabRefFrame;
-import org.jabref.gui.LibraryTab;
+
 import org.jabref.gui.StateManager;
 import org.jabref.gui.actions.SimpleCommand;
 import org.jabref.gui.util.TaskExecutor;
 import org.jabref.preferences.PreferencesService;
-import com.github.sarxos.webcam.*;
 
-import javax.swing.*;
-
-import java.awt.*;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -25,15 +21,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.image.BufferedImage;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
+
 
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
+
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
@@ -43,8 +35,7 @@ import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
-import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
-import com.google.zxing.common.HybridBinarizer;
+
 
 import static org.jabref.gui.actions.ActionHelper.needsDatabase;
 
@@ -81,7 +72,6 @@ public class NewEntryScan extends SimpleCommand {
 
         private Webcam webcam = null;
         private WebcamPanel panel = null;
-        private JTextArea textarea = null;
         private Result result = null;
 
 
@@ -101,12 +91,7 @@ public class NewEntryScan extends SimpleCommand {
             panel.setPreferredSize(size);
             panel.setFPSDisplayed(true);
 
-            textarea = new JTextArea();
-            textarea.setEditable(false);
-            textarea.setPreferredSize(size);
-
             add(panel);
-            add(textarea);
 
             pack();
             setVisible(true);
@@ -155,7 +140,6 @@ public class NewEntryScan extends SimpleCommand {
 
                 if (result != null) {
                     String isbn=result.getText();
-                    textarea.setText(isbn);
                     GenerateEntryFromIdAction action=new GenerateEntryFromIdAction( jabRefFrame.getCurrentLibraryTab(),  dialogService,  preferences,  taskExecutor,  entryFromIdPopOver,  isbn,  stateManager);
                     action.execute();
                 }
