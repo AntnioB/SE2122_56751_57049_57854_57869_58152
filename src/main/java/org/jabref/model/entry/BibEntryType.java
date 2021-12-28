@@ -92,6 +92,18 @@ public class BibEntryType implements Comparable<BibEntryType> {
         return deprecatedFields;
     }
 
+    public Set<Field> getAuthorInfoFields(){
+        Set<Field> authorInfoFields = new LinkedHashSet<>(EntryConverter.FIELD_ALIASES_TEX_TO_LTX.keySet());
+        authorInfoFields.clear();
+
+        authorInfoFields.add(StandardField.AUTHOR_NAME);
+        authorInfoFields.add(StandardField.AFFILIATION);
+        authorInfoFields.add(StandardField.EMAIL);
+        authorInfoFields.add(StandardField.INTERESTS);
+
+        return authorInfoFields;
+    }
+
     public Set<Field> getSecondaryOptionalNotDeprecatedFields() {
         Set<Field> optionalFieldsNotPrimaryOrDeprecated = new LinkedHashSet<>(getSecondaryOptionalFields());
         optionalFieldsNotPrimaryOrDeprecated.removeAll(getDeprecatedFields());

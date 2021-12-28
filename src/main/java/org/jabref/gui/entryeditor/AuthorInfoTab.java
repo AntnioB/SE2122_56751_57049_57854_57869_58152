@@ -57,7 +57,7 @@ public class AuthorInfoTab extends FieldsEditorTab {
         this.entryTypesManager = entryTypesManager;
         this.customTabFieldNames = preferences.getAllDefaultTabFieldNames();
 
-        setText(Localization.lang("info"));
+        setText(Localization.lang("Author info"));
         setTooltip(new Tooltip(Localization.lang("Show remaining fields")));
         setGraphic(IconTheme.JabRefIcons.OPTIONAL.getGraphicNode());
     }
@@ -66,7 +66,7 @@ public class AuthorInfoTab extends FieldsEditorTab {
     protected Set<Field> determineFieldsToShow(BibEntry entry) {
         Optional<BibEntryType> entryType = entryTypesManager.enrich(entry.getType(), databaseContext.getMode());
         if (entryType.isPresent()) {
-            return entryType.get().getAllFields();
+            return entryType.get().getAuthorInfoFields();
         } else {
             // Entry type unknown -> treat all fields as required
             return Collections.emptySet();
