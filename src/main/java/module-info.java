@@ -107,4 +107,5 @@ open module org.jabref {
     requires webcam.capture;
     requires com.google.zxing;
     requires com.google.zxing.javase;
+    requires main;
 }
