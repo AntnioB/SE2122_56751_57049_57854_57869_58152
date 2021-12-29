@@ -25,7 +25,7 @@ public class GoogleScholarProfiles {
 
         try {
             JsonObject results = search.getJson();
-            parser = new GoogleScholarProfilesParser(results.getAsString());
+            parser = new GoogleScholarProfilesParser(results);
         } catch (
                 SerpApiSearchException ex) {
             System.out.println(ex);

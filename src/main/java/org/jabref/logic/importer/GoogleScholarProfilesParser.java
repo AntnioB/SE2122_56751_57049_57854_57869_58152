@@ -8,8 +8,8 @@ public class GoogleScholarProfilesParser {
 
     JsonObject jsonObject;
 
-    public GoogleScholarProfilesParser(String jsonString) {
-        jsonObject = new Gson().fromJson(jsonString, JsonObject.class).getAsJsonObject();
+    public GoogleScholarProfilesParser(JsonObject jsonObject) {
+        this.jsonObject=jsonObject;
     }
 
     public BibEntry parseEntries() {

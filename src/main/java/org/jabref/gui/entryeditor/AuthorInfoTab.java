@@ -93,7 +93,7 @@ public class AuthorInfoTab extends FieldsEditorTab {
 
                 BibEntry bibEntry2 = gsp.executeQuery();
 
-                UpdateField.updateField(entry, field, bibEntry2.getField(StandardField.AUTHOR_NAME).get());
+                UpdateField.updateField(entry, StandardField.AUTHOR_NAME, bibEntry2.getField(StandardField.AUTHOR).get());
             }
 
 
