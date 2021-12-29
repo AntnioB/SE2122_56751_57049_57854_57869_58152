@@ -1,10 +1,6 @@
 package org.jabref.gui.entryeditor;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.swing.undo.UndoManager;
@@ -18,8 +14,10 @@ import org.jabref.gui.entryeditor.FieldsEditorTab;
 import org.jabref.gui.externalfiletype.ExternalFileTypes;
 import org.jabref.gui.icon.IconTheme;
 import org.jabref.gui.util.TaskExecutor;
+import org.jabref.logic.importer.fetcher.GoogleScholarProfiles;
 import org.jabref.logic.journals.JournalAbbreviationRepository;
 import org.jabref.logic.l10n.Localization;
+import org.jabref.logic.util.UpdateField;
 import org.jabref.model.database.BibDatabaseContext;
 import org.jabref.model.entry.BibEntry;
 import org.jabref.model.entry.BibEntryType;
@@ -27,6 +25,7 @@ import org.jabref.model.entry.BibEntryTypesManager;
 import org.jabref.model.entry.field.BibField;
 import org.jabref.model.entry.field.Field;
 import org.jabref.model.entry.field.InternalField;
+import org.jabref.model.entry.field.StandardField;
 import org.jabref.preferences.PreferencesService;
 
 public class AuthorInfoTab extends FieldsEditorTab {
@@ -66,7 +65,39 @@ public class AuthorInfoTab extends FieldsEditorTab {
     protected Set<Field> determineFieldsToShow(BibEntry entry) {
         Optional<BibEntryType> entryType = entryTypesManager.enrich(entry.getType(), databaseContext.getMode());
         if (entryType.isPresent()) {
-            return entryType.get().getAuthorInfoFields();
+
+
+            Set<Field> authorInfoFields=entryType.get().getAuthorInfoFields();
+
+
+            Iterator<Field> it = entryType.get().getAllFields().iterator();
+            Field field = null;
+
+            while (it.hasNext()) {
+                Field node = it.next();
+
+                if (node.getName().equalsIgnoreCase("author"))
+                    field = node;
+
+            }
+
+            assert field != null;
+
+            Optional<String> opt = entry.getField(field);
+
+
+            if(opt.isPresent()) {
+                String value = opt.get();
+
+                GoogleScholarProfiles gsp = new GoogleScholarProfiles(value);
+
+                BibEntry bibEntry2 = gsp.executeQuery();
+
+                UpdateField.updateField(entry, field, bibEntry2.getField(StandardField.AUTHOR_NAME).get());
+            }
+
+
+            return authorInfoFields;
         } else {
             // Entry type unknown -> treat all fields as required
             return Collections.emptySet();

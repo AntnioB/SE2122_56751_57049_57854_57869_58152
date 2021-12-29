@@ -100,35 +100,6 @@ public class BibEntryType implements Comparable<BibEntryType> {
         authorInfoFields.add(StandardField.EMAIL);
         authorInfoFields.add(StandardField.INTERESTS);
 
-        Iterator<BibField> it = fields.iterator();
-        Field field = null;
-
-        while (it.hasNext()) {
-            BibField node = it.next();
-
-            if (node.getField().getName().equalsIgnoreCase("author"))
-                field = node.getField();
-
-        }
-
-        BibEntry bibEntry = new BibEntry(type);
-
-        assert field != null;
-
-        Optional<String> opt = bibEntry.getField(field);
-
-        String value = "";
-
-        if(opt.isPresent()) {
-            value = opt.get();
-        }
-
-        GoogleScholarProfiles gsp = new GoogleScholarProfiles(value);
-
-        BibEntry bibEntry2 = gsp.executeQuery();
-
-        UpdateField.updateField(bibEntry2, field, bibEntry2.getField(StandardField.AUTHOR_NAME).get());
-
         return authorInfoFields;
     }
 
