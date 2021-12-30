@@ -1,0 +1,2 @@
+As a user I want to scan the bar code on the book, so that I can use it as a reference without having 
+to manually insert the ISBN.
