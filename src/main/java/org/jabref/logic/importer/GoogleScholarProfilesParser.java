@@ -13,8 +13,6 @@ public class GoogleScholarProfilesParser {
     }
 
     public BibEntry parseEntries() {
-        System.out.println(jsonObject);
-
         BibEntry bibEntry = new BibEntry();
 
         if (jsonObject.has("profiles")) {

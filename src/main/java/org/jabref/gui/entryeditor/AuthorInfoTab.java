@@ -57,7 +57,7 @@ public class AuthorInfoTab extends FieldsEditorTab {
         this.customTabFieldNames = preferences.getAllDefaultTabFieldNames();
 
         setText(Localization.lang("Author info"));
-        setTooltip(new Tooltip(Localization.lang("Show remaining fields")));
+        setTooltip(new Tooltip(Localization.lang("Show author information")));
         setGraphic(IconTheme.JabRefIcons.OPTIONAL.getGraphicNode());
     }
 
