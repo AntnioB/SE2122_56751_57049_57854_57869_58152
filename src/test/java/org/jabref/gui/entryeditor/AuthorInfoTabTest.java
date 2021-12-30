@@ -17,8 +17,8 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 @GUITest
 @ExtendWith(ApplicationExtension.class)
@@ -34,10 +34,11 @@ class AuthorInfoTabTest {
     //@DisplayName()
     @ParameterizedTest
     @MethodSource ("expectedFields")
-    public void shouldDetermineFields() {
+    public void shouldDetermineFields(Field expectedField) {
         Set<Field> receivedFields = bibEntryType.getAuthorInfoFields();
         assertFalse(receivedFields.isEmpty());
         assertEquals(4, receivedFields.size());
+        assertTrue(receivedFields.contains(expectedField));
     }
 
     private static Set<Field> expectedFields() {
