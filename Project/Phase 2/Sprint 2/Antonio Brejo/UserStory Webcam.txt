@@ -1,2 +1,6 @@
-As a user I want to scan the bar code on the book, so that I can use it as a reference without having 
+As a user I want to scan the bar code on the book, so that I can use it as a reference without having
 to manually insert the ISBN.
+
+The actors involved are the user, and the database jabref accesses when adding a new entry via ISBN id.
+The use case is the one where we add an entry with an ID where the primary actor is the user and the
+secondary actor is the Reference Database.
