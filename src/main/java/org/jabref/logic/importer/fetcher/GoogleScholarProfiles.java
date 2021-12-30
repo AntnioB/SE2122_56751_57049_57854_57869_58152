@@ -6,21 +6,20 @@ import org.jabref.logic.importer.GoogleScholarProfilesParser;
 import org.jabref.model.entry.BibEntry;
 import serpapi.*;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GoogleScholarProfiles {
 
-    Map<String, String> parameter = new HashMap<>();
+    private Map<String, String> parameter = new HashMap<>();
 
     public GoogleScholarProfiles(String query) {
-        parameter.put("engine", "google_scholar_profiles");
         parameter.put("mauthors", query);
-        parameter.put("api_key", "83c392e3fe916c0ef08910e17d9ab0e07058b2be37e8121c3fa806514c2bb37d");
     }
 
     public BibEntry executeQuery() {
-        GoogleSearch search = new GoogleSearch(parameter);
+        SerpApiSearch search = new SerpApiSearch(parameter , "83c392e3fe916c0ef08910e17d9ab0e07058b2be37e8121c3fa806514c2bb37d", "google_scholar_profiles");
         GoogleScholarProfilesParser parser = null;
 
         try {

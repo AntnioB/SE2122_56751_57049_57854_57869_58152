@@ -33,15 +33,15 @@ public class AuthorInfoTab extends FieldsEditorTab {
     private final BibEntryTypesManager entryTypesManager;
 
     public AuthorInfoTab(BibDatabaseContext databaseContext,
-                          SuggestionProviders suggestionProviders,
-                          UndoManager undoManager,
-                          DialogService dialogService,
-                          PreferencesService preferences,
-                          StateManager stateManager,
-                          BibEntryTypesManager entryTypesManager,
-                          ExternalFileTypes externalFileTypes,
-                          TaskExecutor taskExecutor,
-                          JournalAbbreviationRepository journalAbbreviationRepository) {
+                         SuggestionProviders suggestionProviders,
+                         UndoManager undoManager,
+                         DialogService dialogService,
+                         PreferencesService preferences,
+                         StateManager stateManager,
+                         BibEntryTypesManager entryTypesManager,
+                         ExternalFileTypes externalFileTypes,
+                         TaskExecutor taskExecutor,
+                         JournalAbbreviationRepository journalAbbreviationRepository) {
         super(false,
                 databaseContext,
                 suggestionProviders,
@@ -67,7 +67,7 @@ public class AuthorInfoTab extends FieldsEditorTab {
         if (entryType.isPresent()) {
 
 
-            Set<Field> authorInfoFields=entryType.get().getAuthorInfoFields();
+            Set<Field> authorInfoFields = entryType.get().getAuthorInfoFields();
 
 
             Iterator<Field> it = entryType.get().getAllFields().iterator();
@@ -86,14 +86,19 @@ public class AuthorInfoTab extends FieldsEditorTab {
             Optional<String> opt = entry.getField(field);
 
 
-            if(opt.isPresent()) {
+            if (opt.isPresent()) {
                 String value = opt.get();
+
+                value = value.split(",|and")[0];
 
                 GoogleScholarProfiles gsp = new GoogleScholarProfiles(value);
 
                 BibEntry bibEntry2 = gsp.executeQuery();
 
-                UpdateField.updateField(entry, StandardField.AUTHOR_NAME, bibEntry2.getField(StandardField.AUTHOR).get());
+                UpdateField.updateField(entry, StandardField.AUTHOR_NAME, bibEntry2.getField(StandardField.AUTHOR_NAME).get());
+                UpdateField.updateField(entry, StandardField.AFFILIATION, bibEntry2.getField(StandardField.AFFILIATION).get());
+                UpdateField.updateField(entry, StandardField.EMAIL, bibEntry2.getField(StandardField.EMAIL).get());
+                UpdateField.updateField(entry, StandardField.INTERESTS, bibEntry2.getField(StandardField.INTERESTS).get());
             }
 
 

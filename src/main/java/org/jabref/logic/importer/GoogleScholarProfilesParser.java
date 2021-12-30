@@ -9,46 +9,49 @@ public class GoogleScholarProfilesParser {
     JsonObject jsonObject;
 
     public GoogleScholarProfilesParser(JsonObject jsonObject) {
-        this.jsonObject=jsonObject;
+        this.jsonObject = jsonObject;
     }
 
     public BibEntry parseEntries() {
+        System.out.println(jsonObject);
 
         BibEntry bibEntry = new BibEntry();
 
         if (jsonObject.has("profiles")) {
             JsonArray jsonArray = jsonObject.get("profiles").getAsJsonArray();
 
-            for (JsonElement jsonElement : jsonArray
-            ) {
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
+            JsonElement jsonElement = jsonArray.get(0);
 
-                if (jsonObject.has("name")) {
-                    bibEntry.setField(StandardField.AUTHOR_NAME, jsonObject.get("name").getAsString());
-                }
+            jsonObject = jsonElement.getAsJsonObject();
 
-                if (jsonObject.has("affiliations")) {
-                    bibEntry.setField(StandardField.AFFILIATION, jsonObject.get("affiliations").getAsString());
-                }
+            if (jsonObject.has("name")) {
+                bibEntry.setField(StandardField.AUTHOR_NAME, jsonObject.get("name").getAsString());
+            }
 
-                if (jsonObject.has("email")) {
-                    bibEntry.setField(StandardField.EMAIL, jsonObject.get("email").getAsString());
-                }
+            if (jsonObject.has("affiliations")) {
+                bibEntry.setField(StandardField.AFFILIATION, jsonObject.get("affiliations").getAsString());
+            }
 
-                if (jsonObject.has("interests")) {
-                    JsonArray jsonArray2 = jsonObject.get("interests").getAsJsonArray();
+            if (jsonObject.has("email")) {
+                bibEntry.setField(StandardField.EMAIL, jsonObject.get("email").getAsString());
+            }
 
-                    for (JsonElement jsonElement2 : jsonArray2
-                    ) {
-                        JsonObject jsonObject2 = jsonElement2.getAsJsonObject();
+            if (jsonObject.has("interests")) {
+                JsonArray jsonArray2 = jsonObject.get("interests").getAsJsonArray();
 
-                        if (jsonObject2.has("title")) {
-                            bibEntry.setField(StandardField.INTERESTS, jsonObject.get("INTERESTS").getAsString());
-                        }
+                StringBuilder result = new StringBuilder();
+
+                for (JsonElement jsonElement2 : jsonArray2
+                ) {
+                    JsonObject jsonObject2 = jsonElement2.getAsJsonObject();
+
+                    if (jsonObject2.has("title")) {
+                        result.append(", ");
+                        result.append(jsonObject2.get("title").getAsString());
                     }
                 }
-
-
+                result.delete(0,2);
+                bibEntry.setField(StandardField.INTERESTS, result.toString());
             }
 
         }
