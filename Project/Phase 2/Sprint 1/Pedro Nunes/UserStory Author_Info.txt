@@ -1,1 +1,4 @@
 As a user I want to get more information about the author, so that I can know more about them.
+
+The actors are the user and the SerpAPI. When the user adds a certain entry, the SerpAPI will get a request from jabref
+and will return a json which in turn will be parsed by jabref and finally be shown to the user.
