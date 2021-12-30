@@ -1,0 +1,1 @@
+As a user I want to get more information about the author, so that I can know more about them.
