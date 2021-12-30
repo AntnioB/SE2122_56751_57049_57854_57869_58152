@@ -768,7 +768,7 @@ public class JabRefFrame extends BorderPane {
         library.getItems().addAll(
                 factory.createMenuItem(StandardActions.NEW_ENTRY, new NewEntryAction(this, dialogService, prefs, stateManager)),
                 factory.createMenuItem(StandardActions.NEW_ENTRY_FROM_PLAIN_TEXT, new ExtractBibtexAction(dialogService, prefs, stateManager)),
-                factory.createMenuItem(StandardActions.NEW_ENTRY_SCAN,new NewEntryScan(this,dialogService,prefs,stateManager)),
+                factory.createMenuItem(StandardActions.NEW_ENTRY_SCAN,new NewEntryScan(this,dialogService,prefs,stateManager, taskExecutor, entryFromIdPopOver)),
                 factory.createMenuItem(StandardActions.DELETE_ENTRY, new EditAction(StandardActions.DELETE_ENTRY, this, stateManager)),
 
                 new SeparatorMenuItem(),

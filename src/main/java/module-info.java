@@ -37,7 +37,10 @@ open module org.jabref {
             with org.jabref.gui.DefaultInjector;
 
     // Logging
-    requires org.slf4j;
+    /**
+     * @see {@link org.slf4j}
+     */
+    //requires org.slf4j;
     requires org.apache.logging.log4j;
     requires org.apache.logging.log4j.core;
     requires org.apache.logging.log4j.plugins;
@@ -101,4 +104,8 @@ open module org.jabref {
     requires com.fasterxml.jackson.dataformat.yaml;
     requires com.fasterxml.jackson.datatype.jsr310;
     requires net.harawata.appdirs;
+    requires webcam.capture;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires main;
 }

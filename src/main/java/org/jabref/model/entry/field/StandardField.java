@@ -144,7 +144,13 @@ public enum StandardField implements Field {
     OWNER("owner"),
     TIMESTAMP("timestamp", FieldProperty.DATE),
     CREATIONDATE("creationdate", FieldProperty.DATE),
-    MODIFICATIONDATE("modificationdate", FieldProperty.DATE);
+    MODIFICATIONDATE("modificationdate", FieldProperty.DATE),
+
+    //added for the author info additional functionality
+    AUTHOR_NAME("name", FieldProperty.PERSON_NAMES),
+    AFFILIATION("affiliations"),
+    EMAIL("email"),
+    INTERESTS("interests");
 
 
     private final String name;

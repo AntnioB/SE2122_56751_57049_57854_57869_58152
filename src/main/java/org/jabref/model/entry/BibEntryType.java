@@ -1,12 +1,11 @@
 package org.jabref.model.entry;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import org.jabref.logic.importer.fetcher.GoogleScholarProfiles;
+import org.jabref.logic.openoffice.action.Update;
+import org.jabref.logic.util.UpdateField;
 import org.jabref.model.entry.field.BibField;
 import org.jabref.model.entry.field.Field;
 import org.jabref.model.entry.field.FieldPriority;
@@ -37,13 +36,13 @@ public class BibEntryType implements Comparable<BibEntryType> {
      */
     public Set<BibField> getOptionalFields() {
         return getAllBibFields().stream()
-                             .filter(field -> !isRequired(field.getField()))
-                             .collect(Collectors.toCollection(LinkedHashSet::new));
+                .filter(field -> !isRequired(field.getField()))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public boolean isRequired(Field field) {
         return getRequiredFields().stream()
-                                  .anyMatch(fields -> fields.contains(field));
+                .anyMatch(fields -> fields.contains(field));
     }
 
     /**
@@ -70,16 +69,16 @@ public class BibEntryType implements Comparable<BibEntryType> {
 
     public Set<Field> getPrimaryOptionalFields() {
         return getOptionalFields().stream()
-                                  .filter(field -> field.getPriority() == FieldPriority.IMPORTANT)
-                                  .map(BibField::getField)
-                                  .collect(Collectors.toCollection(LinkedHashSet::new));
+                .filter(field -> field.getPriority() == FieldPriority.IMPORTANT)
+                .map(BibField::getField)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public Set<Field> getSecondaryOptionalFields() {
         return getOptionalFields().stream()
-                                  .filter(field -> field.getPriority() == FieldPriority.DETAIL)
-                                  .map(BibField::getField)
-                                  .collect(Collectors.toCollection(LinkedHashSet::new));
+                .filter(field -> field.getPriority() == FieldPriority.DETAIL)
+                .map(BibField::getField)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public Set<Field> getDeprecatedFields() {
@@ -90,6 +89,18 @@ public class BibEntryType implements Comparable<BibEntryType> {
         deprecatedFields.retainAll(getOptionalFieldsAndAliases());
 
         return deprecatedFields;
+    }
+
+    public Set<Field> getAuthorInfoFields() {
+        Set<Field> authorInfoFields = new LinkedHashSet<>(EntryConverter.FIELD_ALIASES_TEX_TO_LTX.keySet());
+        authorInfoFields.clear();
+
+        authorInfoFields.add(StandardField.AUTHOR_NAME);
+        authorInfoFields.add(StandardField.AFFILIATION);
+        authorInfoFields.add(StandardField.EMAIL);
+        authorInfoFields.add(StandardField.INTERESTS);
+
+        return authorInfoFields;
     }
 
     public Set<Field> getSecondaryOptionalNotDeprecatedFields() {
@@ -122,8 +133,8 @@ public class BibEntryType implements Comparable<BibEntryType> {
         }
         BibEntryType that = (BibEntryType) o;
         return type.equals(that.type) &&
-               Objects.equals(requiredFields, that.requiredFields) &&
-               Objects.equals(fields, that.fields);
+                Objects.equals(requiredFields, that.requiredFields) &&
+                Objects.equals(fields, that.fields);
 
     }
 
@@ -135,10 +146,10 @@ public class BibEntryType implements Comparable<BibEntryType> {
     @Override
     public String toString() {
         return "BibEntryType{" +
-               "type=" + type +
-               ", requiredFields=" + requiredFields +
-               ", fields=" + fields +
-               '}';
+                "type=" + type +
+                ", requiredFields=" + requiredFields +
+                ", fields=" + fields +
+                '}';
     }
 
     @Override
